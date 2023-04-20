@@ -1,4 +1,6 @@
-source common.sh
+script_path=$(dirname $0)
+source ${script_path}/common.sh
+
 echo -e "\e[36m>>>>>>>>> install maven <<<<<<<<\e[0m"
 yum install maven -y
 echo -e "\e[36m>>>>>>>>> create app user <<<<<<<<\e[0m"
@@ -18,7 +20,7 @@ yum install mysql -y
 echo -e "\e[36m>>>>>>>>> load scheema <<<<<<<<\e[0m"
 mysql -h mysql-dev.mdevops333.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 echo -e "\e[36m>>>>>>>>> setup systemd service <<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
+cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 echo -e "\e[36m>>>>>>>>> start shipping service <<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable shipping

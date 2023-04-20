@@ -1,4 +1,6 @@
-echo -e "\e[36m>>>>>>>>> Configuring NodeJS repos <<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 yum install nginx -y
 cp roboshop.conf /etc/nginx/default.d/roboshop.conf
 rm -rf /usr/share/nginx/html/*
@@ -8,3 +10,5 @@ unzip /tmp/frontend.zip
 systemctl restart nginx
 systemctl enable nginx
 systemctl enable nginx
+
+

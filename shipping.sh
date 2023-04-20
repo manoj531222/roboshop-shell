@@ -2,6 +2,7 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
+## RoboShop@1
 
 echo -e "\e[36m>>>>>>>>> install maven <<<<<<<<\e[0m"
 yum install maven -y

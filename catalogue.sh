@@ -1,6 +1,6 @@
 source common.sh
 
-dir name
+dirname $0
 exit
 
 echo -e "\e[34m>>>>>>>>> Configuring NodeJS repos <<<<<<<<\e[0m"

@@ -1,3 +1,4 @@
+echo -e "\e[36m>>>>>>>>> Configuring NodeJS repos <<<<<<<<\e[0m"
 yum install nginx -y
 cp roboshop.conf /etc/nginx/default.d/roboshop.conf
 rm -rf /usr/share/nginx/html/*

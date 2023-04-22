@@ -8,16 +8,16 @@ if [ -z "$rabbitmq_appuser_password" ]; then
   exit
 fi
 
-echo -e "\e[36m>>>>>>>>> Setup ErLang Repos <<<<<<<<\e[0m"
+${script_path}Setup ErLang Repos${script_path}
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
-echo -e "\e[36m>>>>>>>>> Setup RabbitMQ Repos <<<<<<<<\e[0m"
+${script_path}Setup RabbitMQ Repos${script_path}
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
-echo -e "\e[36m>>>>>>>>> Install ErLang & RabbitMQ <<<<<<<<\e[0m"
+${script_path}Install ErLang & RabbitMQ${script_path}
 yum install erlang rabbitmq-server -y
-echo -e "\e[36m>>>>>>>>> Start RabbitMQ Service <<<<<<<<\e[0m"
+${script_path}Start RabbitMQ Service${script_path}
 systemctl enable rabbitmq-server
 systemctl restart rabbitmq-server
-echo -e "\e[36m>>>>>>>>> Add Application User in RabbtiMQ <<<<<<<<\e[0m"
+${script_path}Add Application User in RabbtiMQ${script_path}
 rabbitmqctl add_user roboshop ${rabbitmq_appuser_password}
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 

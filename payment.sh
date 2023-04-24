@@ -10,24 +10,24 @@ if [ -z "$rabbitmq_appuser_password" ]; then
 fi
 
 
-${script_path}Install Python <<<<<<<<\e[0m"
+print_head "Install Python"
 yum install python36 gcc python3-devel -y
-${script_path}Add Application User <<<<<<<<\e[0m"
+print_head "Add Application User"
 useradd ${app_user}
-${script_path}Create App Dir <<<<<<<<\e[0m"
+print_head "Create App Dir"
 rm -rf /app
 mkdir /app
-${script_path}Download App Content <<<<<<<<\e[0m"
+print_head "Download App Content"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
-${script_path}Extract App Content <<<<<<<<\e[0m"
+print_head "Extract App Content"
 cd /app
 unzip /tmp/payment.zip
-${script_path}Install Dependencies <<<<<<<<\e[0m"
+print_head "Install Dependencies"
 pip3.6 install -r requirements.txt
-echo -e "\e[36m>>>>>>>>>Setup SystemD Service <<<<<<<<\e[0m"
+print_head "Setup SystemD Service"
 sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service
-cp ${script_path}/payment.service /etc/systemd/system/payment.service
-${script_path}Start Payment Service <<<<<<<<\e[0m"
+cp /payment.service /etc/systemd/system/payment.service
+print_head "Start Payment Service"
 systemctl daemon-reload
 systemctl enable payment
 systemctl restart payment
